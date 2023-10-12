@@ -26,9 +26,6 @@ default:
   DRUID_PORT: 8082
   DRUID_SCHEME: http
   DRUID_USER: user
-  # DuckDB
-  DUCKDB_DATABASE: database
-  DUCKDB_SCHEMA: main
   # Google
   GOOGLE_SERVICE_ACC_KEY:
     type: service_account
@@ -67,12 +64,12 @@ default:
   MYSQL_USER: root
   # PostgresSQL
   POSTGRES_CONNECT_TIMEOUT: 10
-  POSTGRES_DBNAME: postgres
+  POSTGRES_DBNAME: dw
   POSTGRES_SCHEMA: public # Optional
-  POSTGRES_USER: username
-  POSTGRES_PASSWORD: password
-  POSTGRES_HOST: hostname
-  POSTGRES_PORT: 5432
+  POSTGRES_USER: 
+  POSTGRES_PASSWORD: 
+  POSTGRES_HOST: "{{ env_var('DW_HOST') }}"
+  POSTGRES_PORT: 
   # Redshift
   REDSHIFT_SCHEMA: public # Optional
   REDSHIFT_DBNAME: redshift_db_name
