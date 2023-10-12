@@ -1,4 +1,36 @@
-blocks: []
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - transform_cal
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: json_cals
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: json_cals
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: transform_cal
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - json_cals
+  uuid: transform_cal
 callbacks: []
 concurrency_config: {}
 conditionals: []
@@ -16,6 +48,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: null
+updated_at: '2023-10-12 07:18:09'
 uuid: google_calendar
 widgets: []
