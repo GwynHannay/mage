@@ -3,7 +3,7 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - transform_cal
+  - json_normalize
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -18,19 +18,70 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - explode
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: transform_cal
+  name: json_normalize
   retry_config: null
   status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - json_cals
-  uuid: transform_cal
+  uuid: json_normalize
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - clean_cols
+  - col_syntax
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: explode
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - json_normalize
+  uuid: explode
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: clean_cols
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - explode
+  uuid: clean_cols
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: col_syntax
+  retry_config: null
+  status: failed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - explode
+  uuid: col_syntax
 callbacks: []
 concurrency_config: {}
 conditionals: []
@@ -48,6 +99,11 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-10-12 07:18:09'
+updated_at: '2023-10-13 03:36:24'
 uuid: google_calendar
+variables:
+  list_fields:
+  - items
+  - defaultReminders
+  - items_reminders.overrides
 widgets: []

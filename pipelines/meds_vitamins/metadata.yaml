@@ -49,6 +49,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: integration
-updated_at: '2023-10-12 04:22:29'
+updated_at: '2023-10-13 02:46:10'
 uuid: meds_vitamins
 widgets: []

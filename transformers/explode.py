@@ -21,22 +21,17 @@ def transform(data, *args, **kwargs):
         Anything (e.g. data frame, dictionary, array, int, str, etc.)
     """
     # Specify your transformation logic here
-    df = pd.json_normalize(data)
-    return df
+    for field in kwargs['list_fields']:
+        exploded = data.explode(field, ignore_index=True)
+        normed = pd.json_normalize(exploded[field])
+        normed = normed.add_prefix(''.join([field, '_']))
+        exploded.drop(field, axis=1, inplace=True)
 
+        suffix = ''.join(['_', field])
 
-    # cal_items = list()
-    # for entry in data:
-    #     cols = None
-    #     cols = list()
-    #     for col in entry:
-    #         if not col == 'items': 
-    #             cols.append(col)
-            
-    #     cal_items.append(cols)
+        data = exploded.join(normed, how='inner', rsuffix=suffix, validate='1:1')
 
-    # df = pd.
-    # return data
+    return data
 
 
 @test

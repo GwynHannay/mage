@@ -12,19 +12,21 @@ if 'test' not in globals():
 @transformer
 def execute_transformer_action(df: DataFrame, *args, **kwargs) -> DataFrame:
     """
-    Execute Transformer Action: ActionType.CLEAN_COLUMN_NAME
+    Execute Transformer Action: ActionType.FIX_SYNTAX_ERRORS
 
-    Docs: https://docs.mage.ai/guides/transformer-blocks#clean-column-names
+    This marks any improperly formatted values in each column specified
+    as invalid.
+
+    Docs: https://docs.mage.ai/guides/transformer-blocks#fix-syntax-errors
     """
-    # action = build_transformer_action(
-    #     df,
-    #     action_type=ActionType.CLEAN_COLUMN_NAME,
-    #     arguments=df.columns,
-    #     axis=Axis.COLUMN,
-    # )
-    df.info()
+    action = build_transformer_action(
+        df,
+        action_type=ActionType.FIX_SYNTAX_ERRORS,
+        arguments=df.columns,  # Specify columns to fix syntax errors for.
+        axis=Axis.COLUMN,
+    )
 
-    # return BaseAction(action).execute(df)
+    return BaseAction(action).execute(df)
 
 
 @test
