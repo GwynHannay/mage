@@ -16,15 +16,14 @@ def execute_transformer_action(df: DataFrame, *args, **kwargs) -> DataFrame:
 
     Docs: https://docs.mage.ai/guides/transformer-blocks#clean-column-names
     """
-    # action = build_transformer_action(
-    #     df,
-    #     action_type=ActionType.CLEAN_COLUMN_NAME,
-    #     arguments=df.columns,
-    #     axis=Axis.COLUMN,
-    # )
-    df.info()
+    action = build_transformer_action(
+        df,
+        action_type=ActionType.CLEAN_COLUMN_NAME,
+        arguments=df.columns,
+        axis=Axis.COLUMN,
+    )
 
-    # return BaseAction(action).execute(df)
+    return BaseAction(action).execute(df)
 
 
 @test
