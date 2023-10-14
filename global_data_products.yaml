@@ -1,0 +1,5 @@
+google_calendar:
+  object_type: pipeline
+  object_uuid: google_calendar
+  settings:
+    clean_cols: {}

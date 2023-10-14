@@ -1,4 +1,0 @@
-config:
-  path_to_credentials_json_file: "{{ env_var('GSHEETS_CREDS') }}"
-  spreadsheet_id: "{{ env_var('MED_GSHEET') }}"
-source: google_sheets

@@ -1,8 +1,0 @@
-config:
-  database: dw
-  host: "{{ env_var('DW_HOST') }}"
-  password: "{{ env_var('MAGE_DW_PASS') }}"
-  port: 5432
-  schema: public
-  username: "{{ env_var('MAGE_DW_USER') }}"
-destination: postgresql

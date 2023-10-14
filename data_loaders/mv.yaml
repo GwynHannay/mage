@@ -1,4 +1,0 @@
-config:
-  path_to_credentials_json_file: "{{ mage_secret_var('gsheets_creds') }}"
-  spreadsheet_id: "{{ mage_secret_var('med_gsheet') }}"
-source: google_sheets
