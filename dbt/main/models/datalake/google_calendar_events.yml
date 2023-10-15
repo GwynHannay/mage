@@ -1,0 +1,237 @@
+version: 2
+
+models:
+  - name: google_calendar_events
+    description: Single and recurring events from Google Calendar API
+    docs:
+      show: true
+    columns:
+      - name: cal_access_role
+        description: User's access role for this calendar - none (no access), freeBusyReader (read access to free/busy information), reader (can read, though private events will not include details), writer (can read and write, including private events), owner (all permissions of writer and can see and manipulate ACLs).
+        tests:
+          - accepted_values:
+              values: ['none', 'freeBusyReader', 'reader', 'writer', 'owner']
+      - name: cal_default_reminder_method
+        description: "For default reminders on this calendar for the authenticated user: Method used by this reminder - email (sent via email) or popup (popup in UI)."
+        tests:
+          - accepted_values:
+              values: ['email', 'popup']
+      - name: cal_default_reminder_minutes
+        description: "For default reminders on this calendar for the authenticated user: Number of minutes before the start of the event when the reminder should trigger."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 40320
+      - name: cal_description
+        description: Description of the calendar.
+      - name: cal_etag
+        description: ETag of the collection.
+      - name: event_attach_file_id
+        description: "For event attachments: ID of the Files resource in the Google Drive API."
+      - name: event_attach_url
+        description: "For event attachments: URL link to the attachment."
+      - name: event_attach_icon
+        description: "For event attachments: URL link to the attachment's icon."
+      - name: event_attach_mimetype
+        description: "For event attachments: Internet media type (MIME type) of the attachment."
+      - name: event_attach_title
+        description: "For event attachments: Title of the attachment."
+      - name: event_attendees_additional
+        description: "For event attendees: Number of additional guests."
+      - name: event_attendees_comment
+        description: "For event attendees: Attendee's response comment."
+      - name: event_attendees_name
+        description: "For event attendees: Attendee's name, if available."
+      - name: event_attendees_email
+        description: "For event attendees: Attendee's email address, if available."
+      - name: event_attendees_optional
+        description: "For event attendees: Whether this is an optional attendee."
+      - name: event_attendees_organizer
+        description: "For event attendees: Whether the attendee is the organizer of the event."
+      - name: event_attendees_response
+        description: "For event attendees: Attendee's response status - needsAction (no response), declined, tentative (tentatively accepted), accepted."
+        tests:
+          - accepted_values:
+              values: ['needsAction', 'declined', 'tentative', 'accepted']
+      - name: event_attendees_self
+        description: "For event attendees: Whether this entry represents the calendar on which this copy of the event appears."
+      - name: event_color_id
+        description: Color of the event. This is an ID referring to an entry in the event section of the colors definition.
+      - name: event_conference_id
+        description: ID of the conference. Can be used by developers to keep track of conferences, should not be displayed to users. 
+      - name: event_conference_type_icon
+        description: The user-visible icon for this conference solution.
+      - name: event_conference_type_key
+        description: The conference solution type. Possible values are - eventHangout, eventNamedHangout, hangoutsMeet, addOn.
+      - name: event_conference_type_name
+        description: The user-visible name of this conference solution. Not localized.
+      - name: event_conference_req_key
+        description: For a request to generate a new conference and attach it to the event - conference solution type.
+      - name: event_conference_req_id
+        description: The client-generated unique ID for this request.
+      - name: event_conference_req_status
+        description: The current status of the conference create request. Possible values are - pending, success, failure.
+      - name: event_conference_entry_type
+        description: The type of the conference entry point. Possible values are - video, phone, sip, more.
+      - name: event_conference_entry_label
+        description: The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters.
+      - name: event_conference_entry_meeting
+        description: The meeting code to access the conference. The maximum length is 128 characters.
+      - name: event_conference_entry_pass
+        description: The passcode to access the conference. The maximum length is 128 characters.
+      - name: event_conference_entry_pin
+        description: The PIN to access the conference. The maximum length is 128 characters.
+      - name: event_conference_entry_region
+        description: ""
+      - name: event_conference_entry_uri
+        description: The URI of the entry point. The maximum length is 1300 characters.
+      - name: event_conference_notes
+        description: Additional notes (such as instructions from the domain administrator, legal notices) to display to the user. Can contain HTML. The maximum length is 2048 characters.
+      - name: event_conference_creator_id
+        description: ""
+      - name: event_conference_created_by
+        description: ""
+      - name: event_conference_type
+        description: ""
+      - name: event_conference_uuid
+        description: ""
+      - name: event_conference_orig_event_id
+        description: ""
+      - name: event_conference_real_meeting_id
+        description: ""
+      - name: event_conference_script_id
+        description: ""
+      - name: event_created
+        description: Creation time of the event (as a RFC3339 timestamp).
+      - name: event_creator_name
+        description: The event creator's name, if available.
+      - name: event_creator_email
+        description: The event creator's email address, if available.
+      - name: event_creator_self
+        description: Whether the event creator corresponds to the calendar on which this copy of the event appears.
+      - name: event_description
+        description: Description of the event. Can contain HTML.
+      - name: event_end_date
+        description: The date, in the format "yyyy-mm-dd", if this is an all-day event. For a recurring event, this is the end time of the first instance.
+      - name: event_end_dt
+        description: The time, as a combined date-time value (formatted according to RFC3339).
+      - name: event_end_tz
+        description: The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) For recurring events this specifies the time zone in which the recurrence is expanded.
+      - name: event_etag
+        description: ETag of the resource.
+      - name: event_type
+        description: Specific type of the event. Possible values are - default, outOfOffice, focusTime, workingLocation.
+      - name: event_attendee_list
+        description: ""
+      - name: event_everyone_declined
+        description: ""
+      - name: event_ical_dt_stamp
+        description: ""
+      - name: event_private_ical_dt_stamp
+        description: ""
+      - name: event_original_tz
+        description: ""
+      - name: event_created_avail_id
+        description: ""
+      - name: event_created_set
+        description: ""
+      - name: event_meeting_id
+        description: ""
+      - name: event_meeting_params
+        description: ""
+      - name: event_zoom_num
+        description: ""
+      - name: event_icon
+        description: The gadget's icon URL. The URL scheme must be HTTPS. Deprecated.
+      - name: event_contact_id
+        description: ""
+      - name: event_contact_email
+        description: ""
+      - name: event_contact_event_type
+        description: ""
+      - name: event_contact_full_name
+        description: ""
+      - name: event_contact_given_name
+        description: ""
+      - name: event_contact_is_contact
+        description: ""
+      - name: event_contact_photo
+        description: ""
+      - name: event_contact_profile_id
+        description: ""
+      - name: event_contact_gplus_user
+        description: ""
+      - name: event_guest_invite_others
+        description: ""
+      - name: event_guest_modify
+        description: ""
+      - name: event_guest_see_others
+        description: ""
+      - name: event_hangout
+        description: ""
+      - name: event_link
+        description: ""
+      - name: event_ical_uid
+        description: ""
+      - name: event_id
+        description: ""
+      - name: event_kind
+        description: ""
+      - name: event_location
+        description: ""
+      - name: event_organizer_name
+        description: ""
+      - name: event_organizer_email
+        description: ""
+      - name: event_organizer_self
+        description: ""
+      - name: event_original_date
+        description: ""
+      - name: event_original_dt
+        description: ""
+      - name: event_original_tz
+        description: ""
+      - name: event_private_copy
+        description: ""
+      - name: event_recurring_id
+        description: ""
+      - name: event_override_reminder_method
+        description: ""
+      - name: event_override_reminder_minutes
+        description: ""
+      - name: event_reminder_use_default
+        description: ""
+      - name: event_seq
+        description: ""
+      - name: event_source_title
+        description: ""
+      - name: event_source
+        description: ""
+      - name: event_start_date
+        description: ""
+      - name: event_start_dt
+        description: ""
+      - name: event_start_tz
+        description: ""
+      - name: event_status
+        description: ""
+      - name: event_summary
+        description: ""
+      - name: event_transparency
+        description: ""
+      - name: event_updated
+        description: ""
+      - name: event_visibility
+        description: ""
+      - name: cal_kind
+        description: ""
+      - name: cal_next_page_token
+        description: ""
+      - name: cal_next_sync_token
+        description: ""
+      - name: cal_summary
+        description: ""
+      - name: cal_time_zone
+        description: ""
+      - name: cal_updated
+        description: ""

@@ -1,0 +1,13 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_main
+  schema: public
+  tables:
+  - description: Dataframe for block `clean_cols` of the `google_calendar` mage pipeline.
+    identifier: mage_google_calendar_clean_cols
+    meta:
+      block_uuid: clean_cols
+      pipeline_uuid: google_calendar
+    name: google_calendar_clean_cols
+version: 2

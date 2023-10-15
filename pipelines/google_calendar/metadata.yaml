@@ -54,6 +54,7 @@ blocks:
   configuration: {}
   downstream_blocks:
   - load_datalake
+  - main/google_calendar_events
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -66,6 +67,24 @@ blocks:
   upstream_blocks:
   - explode
   uuid: clean_cols
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: main/google_calendar_events.sql
+    limit: 1000
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: main/google_calendar_events
+  retry_config: null
+  status: updated
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - clean_cols
+  uuid: main/google_calendar_events
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -99,7 +118,7 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-10-14 04:21:47'
+updated_at: '2023-10-15 00:04:15'
 uuid: google_calendar
 variables:
   list_fields:
