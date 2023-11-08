@@ -51,6 +51,7 @@ with latest_snapshot as (
 
 select
     *,
-	case when days_left < 7 then TRUE else FALSE end as more_needed
+	case when days_left < 7 then TRUE else FALSE end as more_needed,
+	case when next_sorted + (days_left::text || ' day')::interval > expiration then TRUE else FALSE end as expires_before_use
 from remaining_medications
 join calcs using(item)
