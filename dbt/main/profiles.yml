@@ -11,3 +11,12 @@ main:
       dbname: datalake
       schema: public
       threads: 4
+    prod:
+      type: postgres
+      host: "{{ env_var('DW_HOST') }}"
+      user: "{{ env_var('MAGE_DW_USER') }}"
+      password: "{{ env_var('MAGE_DW_PASS') }}"
+      port: 5432
+      dbname: dw
+      schema: public
+      threads: 4

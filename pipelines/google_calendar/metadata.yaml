@@ -61,13 +61,13 @@ blocks:
   language: python
   name: clean_cols
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: transformer
   upstream_blocks:
   - explode
   uuid: clean_cols
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     file_path: main/google_calendar_events.sql
@@ -85,7 +85,7 @@ blocks:
   upstream_blocks:
   - clean_cols
   uuid: main/google_calendar_events
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks: []
@@ -118,7 +118,7 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-10-15 00:04:15'
+updated_at: '2023-10-15 10:01:55'
 uuid: google_calendar
 variables:
   list_fields:

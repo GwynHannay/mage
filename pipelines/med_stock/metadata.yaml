@@ -11,7 +11,7 @@ blocks:
   language: sql
   name: main/models/med_stock
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: dbt
   upstream_blocks: []
@@ -33,6 +33,6 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-10-15 01:57:29'
+updated_at: '2023-11-08 01:32:07'
 uuid: med_stock
 widgets: []
