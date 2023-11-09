@@ -38,19 +38,25 @@ with latest_snapshot as (
         item,
         sum(remaining) as remaining,
         min(expiration) as expiration,
-        max(dose) as dose
+        max(dose) as dose,
+        now() as today
     from current_medications
     group by item
 ), calcs as (
     select
         item,
         remaining / dose as days_left,
-        {{ next_saturday_from_timestamp(now()) }} as next_sorted
+        {{ next_saturday_from_timestamp('today') }} as next_sorted
     from remaining_medications
 )
 
 select
-    *,
+    item,
+    remaining,
+    expiration,
+    dose,
+    days_left,
+    next_sorted,
 	case when days_left < 7 then TRUE else FALSE end as more_needed
 from remaining_medications
 join calcs using(item)
