@@ -1,0 +1,81 @@
+version: 2
+
+sources:
+  - name: pg_raw
+    schema: source
+    database: dw
+
+    tables:
+      - name: account
+        description: Accounts stored in Budget.yfull
+        columns:
+          - name: entity_id
+          - name: account_name
+          - name: account_type
+          - name: on_budget
+          - name: last_balance
+          - name: reconciled_date
+          - name: entity_version
+          - name: hidden
+
+      - name: master_category
+        description: MasterCategories stored in Budget.yfull
+        columns:
+          - name: entity_id
+          - name: category_name
+          - name: category_type
+          - name: note
+          - name: entity_version
+          - name: tombstone
+
+      - name: category
+        description: SubCategories in MasterCategories stored in Budget.yfull
+        columns:
+          - name: entity_id
+          - name: master_category_id
+          - name: category_name
+          - name: category_type
+          - name: cached_balance
+          - name: note
+          - name: entity_version
+          - name: tombstone
+
+      - name: payee
+        description: Payees stored in Budget.yfull
+        columns:
+          - name: entity_id
+          - name: payee_name
+          - name: target_account_id
+          - name: autofill_category_id
+          - name: autofill_amount
+          - name: autofill_memo
+          - name: enabled
+          - name: entity_version
+      
+      - name: location
+        description: Locations in Payees stored in Budget.yfull
+        columns:
+          - name: entity_id
+          - name: parent_payee_id
+          - name: latitude
+          - name: longitude
+          - name: tombstone
+          - name: entity_version
+
+      - name: transaction
+        description: Transactions stored in Budget.yfull
+        columns:
+          - name: entity_id
+          - name: parent_transaction_id
+          - name: date
+          - name: category_id
+          - name: payee_id
+          - name: amount
+          - name: account_id
+          - name: memo
+          - name: cleared
+          - name: accepted
+          - name: target_account_id
+          - name: transfer_transaction_id
+          - name: tombstone
+          - name: entity_version

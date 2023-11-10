@@ -1,0 +1,24 @@
+warehouse:
+  outputs:
+
+    dev:
+      type: postgres
+      threads: 4
+      host: "{{ env_var('DW_HOST') }}"
+      port: 5432
+      user: "{{ env_var('MAGE_DW_USER') }}"
+      pass: "{{ env_var('MAGE_DW_PASS') }}"
+      dbname: dw
+      schema: public
+
+    prod:
+      type: postgres
+      threads: 4
+      host: "{{ env_var('DW_HOST') }}"
+      port: 5432
+      user: "{{ env_var('MAGE_DW_USER') }}"
+      pass: "{{ env_var('MAGE_DW_PASS') }}"
+      dbname: dw
+      schema: public
+
+  target: dev
