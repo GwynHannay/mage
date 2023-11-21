@@ -18,7 +18,7 @@ def load_data_from_file(*args, **kwargs):
 
     Docs: https://docs.mage.ai/design/data-loading#fileio
     """
-    filepath = '/home/nfs/google/calendar'
+    filepath = kwargs['file_source']
 
     cal_items = list()
     for filename in os.listdir(filepath):

@@ -53,39 +53,37 @@ blocks:
   color: null
   configuration: {}
   downstream_blocks:
-  - load_datalake
-  - main/google_calendar_events
+  - rename_columns
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: clean_cols
   retry_config: null
-  status: failed
+  status: executed
   timeout: null
   type: transformer
   upstream_blocks:
   - explode
   uuid: clean_cols
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
-  configuration:
-    file_path: main/google_calendar_events.sql
-    limit: 1000
-  downstream_blocks: []
+  configuration: {}
+  downstream_blocks:
+  - load_datalake
   executor_config: null
   executor_type: local_python
   has_callback: false
-  language: sql
-  name: main/google_calendar_events
+  language: python
+  name: rename columns
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
-  type: dbt
+  type: transformer
   upstream_blocks:
   - clean_cols
-  uuid: main/google_calendar_events
-- all_upstream_blocks_executed: false
+  uuid: rename_columns
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks: []
@@ -95,11 +93,11 @@ blocks:
   language: python
   name: load_datalake
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - clean_cols
+  - rename_columns
   uuid: load_datalake
 callbacks: []
 concurrency_config: {}
@@ -118,9 +116,11 @@ run_pipeline_in_one_process: false
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-10-15 10:01:55'
+updated_at: '2023-11-21 04:13:44'
 uuid: google_calendar
 variables:
+  col_map_file: /home/nfs/google/calendar_col_names.csv
+  file_source: /home/nfs/google/calendar
   list_fields:
   - items
   - defaultReminders
