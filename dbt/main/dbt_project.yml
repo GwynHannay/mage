@@ -20,9 +20,4 @@ clean-targets:
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 models:
-  main:
-      materialized: table
-      datalake:
-        materialized: table
-      datawarehouse:
-        materialized: table
+  +materialized: table

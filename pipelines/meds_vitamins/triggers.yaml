@@ -1,0 +1,11 @@
+triggers:
+- envs: []
+  name: daily_gsheet_meds_vitamins
+  pipeline_uuid: meds_vitamins
+  schedule_interval: 40 19 * * *
+  schedule_type: time
+  settings: {}
+  sla: null
+  start_time: 2023-11-20 19:40:00+00:00
+  status: active
+  variables: null
