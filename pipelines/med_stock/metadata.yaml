@@ -16,6 +16,7 @@ blocks:
   type: dbt
   upstream_blocks: []
   uuid: main/models/med_stock
+cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
@@ -28,11 +29,15 @@ executor_type: null
 extensions: {}
 name: med_stock
 notification_config: {}
+remote_variables_dir: null
 retry_config: {}
 run_pipeline_in_one_process: false
+settings:
+  triggers: null
 spark_config: {}
 tags: []
 type: python
-updated_at: '2023-11-09 00:14:53'
+updated_at: '2023-12-07 20:26:40'
 uuid: med_stock
+variables_dir: /home/src/mage_data/repo
 widgets: []

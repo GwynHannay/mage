@@ -57,6 +57,7 @@ select
     dose,
     days_left,
     next_sorted,
-	case when days_left < 7 then TRUE else FALSE end as more_needed
+	case when days_left < 7 then TRUE else FALSE end as more_needed,
+    next_sorted + (days_left::text || ' day')::interval as runs_out
 from remaining_medications
 join calcs using(item)
